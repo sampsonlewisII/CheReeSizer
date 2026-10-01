@@ -43,6 +43,7 @@ Semantic versioning (`MAJOR.MINOR.PATCH`). The version lives in three places tha
 - First desktop release for Windows (.msi, .exe) and Linux (.AppImage, .deb), plus a standalone single-file HTML page.
 - Ported from the claude.ai artifact: native Save As dialog in the app, a normal browser download in the HTML page.
 - IBM Plex fonts embedded so it works fully offline.
+- Build fix before the first release: the bundle category must be "Graphics and Design" (Tauri rejected "Graphics"); workflow actions updated to checkout@v5 / setup-node@v5.
 
 ## Licenses
 
