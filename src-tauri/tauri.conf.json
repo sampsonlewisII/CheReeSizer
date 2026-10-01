@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "CheReeSizer",
+  "version": "1.0.0",
+  "identifier": "com.sampsonlewis.chereesizer",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "CheReeSizer",
+        "width": 1320,
+        "height": 920,
+        "minWidth": 760,
+        "minHeight": 600,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "nsis", "appimage", "deb"],
+    "publisher": "Sampson Lewis",
+    "category": "Graphics",
+    "shortDescription": "Exact image resizer with an edge inspector",
+    "longDescription": "Resize images to an exact size without padding, and inspect the outermost pixels of all four edges at 8x to catch white pad lines before they are upscaled.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png",
+      "icons/icon.ico"
+    ]
+  }
+}

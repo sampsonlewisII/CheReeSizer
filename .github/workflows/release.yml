@@ -1,0 +1,59 @@
+name: Release
+
+# Push a tag like v1.0.0 to build Windows + Linux installers and publish them on a GitHub Release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [windows-latest, ubuntu-22.04]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Linux build dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "./src-tauri -> target"
+
+      - run: npm ci
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: "CheReeSizer ${{ github.ref_name }}"
+          releaseBody: "Windows: download the .msi (or the -setup.exe). Linux: the .AppImage runs anywhere; the .deb is for Ubuntu/Debian. No install at all: CheReeSizer.html opens in any browser. Changes are in the README changelog."
+          releaseDraft: false
+          prerelease: false
+
+  standalone:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attach the standalone single-file page
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp src/index.html CheReeSizer.html
+          gh release upload "${{ github.ref_name }}" CheReeSizer.html --clobber
