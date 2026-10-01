@@ -31,13 +31,17 @@ The desktop app is a [Tauri 2](https://tauri.app) wrapper around `src/index.html
 
 Local build (needs Node and Rust): `npm ci`, then `npm run tauri build`.
 
-`tools/port_artifact.py` is the one-time script that converted the original claude.ai artifact into `src/index.html` (embedded fonts, native Save As). `tools/make_icons.py` generates `src-tauri/icons/`.
+`src/index.html` is the source of truth; edit it directly. `tools/port_artifact.py` is the one-time script that converted the original claude.ai artifact into it (embedded fonts, native Save As) and is kept for history only; re-running it would discard later changes such as the themes. Since v1.1.0 the icons in `src-tauri/icons/` are Cheree's artwork (the source PNGs live outside the repo); `tools/make_icons.py` only generated the original v1.0.0 placeholder icon.
 
 ## Versioning
 
 Semantic versioning (`MAJOR.MINOR.PATCH`). The version lives in three places that must match: `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json`. Every commit adds an entry below, newest first.
 
 ## Changelog
+
+### v1.1.0 (2026-10-01)
+- **Themes:** the header's Theme button is now a picker with 7 themes: Auto (follows the system), Dark, Light, **Cheree** (pinks and magenta to match her icon), Ocean, Forest and High Contrast. Your choice is remembered between launches. The preview backdrops (Dark/Light/Checker/Magenta) are unchanged, since they're measurement tools.
+- **New app icon:** Cheree with her milkshake and the CRS badge. The Windows .ico carries her own artwork at all five sizes (16, 32, 64, 128, 256), with no resampling.
 
 ### v1.0.0 (2026-10-01)
 - First desktop release for Windows (.msi, .exe) and Linux (.AppImage, .deb), plus a standalone single-file HTML page.

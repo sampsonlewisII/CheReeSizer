@@ -1,6 +1,6 @@
 [package]
 name = "chereesizer"
-version = "1.0.0"
+version = "1.1.0"
 description = "Resize images exactly and inspect all four edges for padding lines"
 authors = ["Sampson Lewis"]
 edition = "2021"

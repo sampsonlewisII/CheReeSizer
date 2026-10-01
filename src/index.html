@@ -35,13 +35,18 @@
   --alert:#ff6b5e;
   --alert-soft:rgba(255,107,94,.13);
   --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 26px rgba(0,0,0,.45);
+  --on-accent:#17120a;
   --radius:5px;
   --f-display:"IBM Plex Sans Condensed","Helvetica Neue",Arial,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
 }
+/* Theme picker: no data-theme = Auto (follows the system); otherwise the named theme below wins. */
 @media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
+  :root:not([data-theme]){
+    color-scheme:light;
+    --on-accent:#fff;
     --ground:#eceef1;
     --panel:#ffffff;
     --panel-2:#f4f6f8;
@@ -61,24 +66,67 @@
     --shadow:0 1px 2px rgba(20,28,40,.07), 0 8px 24px rgba(20,28,40,.09);
   }
 }
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#11141b; --panel:#181d26; --panel-2:#1f2634; --sunk:#0c0f15;
+  --line:#2c3444; --line-soft:#232b38;
+  --ink:#dbe2ee; --ink-mid:#9aa6ba; --ink-dim:#6d788b;
+  --accent:#f0a32c; --accent-soft:rgba(240,163,44,.14); --on-accent:#17120a;
+  --cyan:#4cc4d6; --ok:#44c98a; --ok-soft:rgba(68,201,138,.12);
+  --alert:#ff6b5e; --alert-soft:rgba(255,107,94,.13);
+  --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 26px rgba(0,0,0,.45);
+}
 :root[data-theme="light"]{
-  --ground:#eceef1;
-  --panel:#ffffff;
-  --panel-2:#f4f6f8;
-  --sunk:#e2e5ea;
-  --line:#ccd2db;
-  --line-soft:#dde1e8;
-  --ink:#1b212b;
-  --ink-mid:#55606f;
-  --ink-dim:#7b8593;
-  --accent:#b4700a;
-  --accent-soft:rgba(180,112,10,.12);
-  --cyan:#1b7f8e;
-  --ok:#1d8a5a;
-  --ok-soft:rgba(29,138,90,.11);
-  --alert:#c5372b;
-  --alert-soft:rgba(197,55,43,.1);
+  color-scheme:light;
+  --ground:#eceef1; --panel:#ffffff; --panel-2:#f4f6f8; --sunk:#e2e5ea;
+  --line:#ccd2db; --line-soft:#dde1e8;
+  --ink:#1b212b; --ink-mid:#55606f; --ink-dim:#7b8593;
+  --accent:#b4700a; --accent-soft:rgba(180,112,10,.12); --on-accent:#fff;
+  --cyan:#1b7f8e; --ok:#1d8a5a; --ok-soft:rgba(29,138,90,.11);
+  --alert:#c5372b; --alert-soft:rgba(197,55,43,.1);
   --shadow:0 1px 2px rgba(20,28,40,.07), 0 8px 24px rgba(20,28,40,.09);
+}
+/* Cheree: pinks and magenta to match her icon and the CRS badge (gold secondary like the badge outline). */
+:root[data-theme="cheree"]{
+  color-scheme:dark;
+  --ground:#1a0f17; --panel:#24141f; --panel-2:#2f1a29; --sunk:#120a10;
+  --line:#4a2a40; --line-soft:#3a2133;
+  --ink:#f8e8f1; --ink-mid:#cfa7be; --ink-dim:#98728b;
+  --accent:#ff4fa3; --accent-soft:rgba(255,79,163,.16); --on-accent:#2a0b1c;
+  --cyan:#ffd166; --ok:#5fd59b; --ok-soft:rgba(95,213,155,.13);
+  --alert:#ff6a5a; --alert-soft:rgba(255,106,90,.15);
+  --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 26px rgba(0,0,0,.5);
+}
+:root[data-theme="ocean"]{
+  color-scheme:dark;
+  --ground:#0b1622; --panel:#102131; --panel-2:#15293d; --sunk:#08111b;
+  --line:#213a52; --line-soft:#1a3045;
+  --ink:#dcecf7; --ink-mid:#93b3c9; --ink-dim:#62829a;
+  --accent:#3fd0e0; --accent-soft:rgba(63,208,224,.14); --on-accent:#04202a;
+  --cyan:#8fb8ff; --ok:#4fd39a; --ok-soft:rgba(79,211,154,.12);
+  --alert:#ff6b6b; --alert-soft:rgba(255,107,107,.14);
+  --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 26px rgba(0,0,0,.5);
+}
+:root[data-theme="forest"]{
+  color-scheme:dark;
+  --ground:#0f1612; --panel:#15201a; --panel-2:#1b2a21; --sunk:#0b110d;
+  --line:#2b3d31; --line-soft:#223228;
+  --ink:#e3ecdf; --ink-mid:#a5b8a1; --ink-dim:#74876f;
+  --accent:#e0b84a; --accent-soft:rgba(224,184,74,.14); --on-accent:#1d1606;
+  --cyan:#7fd1b9; --ok:#6fd38a; --ok-soft:rgba(111,211,138,.12);
+  --alert:#ff7a5e; --alert-soft:rgba(255,122,94,.14);
+  --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 26px rgba(0,0,0,.5);
+}
+/* High Contrast: pure black/white, yellow accent, solid lines, no soft shadows. */
+:root[data-theme="contrast"]{
+  color-scheme:dark;
+  --ground:#000000; --panel:#000000; --panel-2:#111111; --sunk:#000000;
+  --line:#ffffff; --line-soft:#8a8a8a;
+  --ink:#ffffff; --ink-mid:#ffffff; --ink-dim:#d6d6d6;
+  --accent:#ffd400; --accent-soft:rgba(255,212,0,.22); --on-accent:#000000;
+  --cyan:#00e5ff; --ok:#00ff6a; --ok-soft:rgba(0,255,106,.16);
+  --alert:#ff3b3b; --alert-soft:rgba(255,59,59,.2);
+  --shadow:none;
 }
 
 *{box-sizing:border-box}
@@ -232,9 +280,9 @@ button.primary{
   background:var(--accent); border-color:var(--accent); color:#17120a;
   width:100%; padding:11px; font-size:12px; letter-spacing:.11em;
 }
-:root[data-theme="light"] button.primary, :root:not([data-theme="dark"]) button.primary{color:#fff}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.primary{color:#17120a}}
-button.primary:hover:not(:disabled){filter:brightness(1.08); color:#17120a}
+button.primary{color:var(--on-accent)}
+button.primary:hover:not(:disabled){filter:brightness(1.08); color:var(--on-accent)}
+.themesel{width:auto; min-width:140px; padding:5px 8px; font-family:var(--f-display); text-transform:uppercase; letter-spacing:.08em; font-size:11px; font-weight:600}
 button.tiny{padding:5px 8px; font-size:10px}
 .seg{display:flex; gap:0; border:1px solid var(--line); border-radius:4px; overflow:hidden}
 .seg button{border:0; border-radius:0; flex:1; border-right:1px solid var(--line)}
@@ -365,7 +413,16 @@ button.tiny{padding:5px 8px; font-size:10px}
     <div class="brand">Che<b>Ree</b>Sizer</div>
     <div class="tagline">resize exact &middot; inspect all four edges at 8&times; &middot; export clean</div>
     <div class="spacer"></div>
-    <button id="themeBtn" class="tiny" type="button" title="Switch light / dark">Theme</button>
+    <label class="vh" for="themeSel">Theme</label>
+    <select id="themeSel" class="themesel" title="Theme">
+      <option value="auto">Theme: Auto</option>
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+      <option value="cheree">Cheree</option>
+      <option value="ocean">Ocean</option>
+      <option value="forest">Forest</option>
+      <option value="contrast">High Contrast</option>
+    </select>
   </header>
 
   <div class="bench">
@@ -1095,15 +1152,10 @@ button.tiny{padding:5px 8px; font-size:10px}
       S.quality = +e.target.value; $("qVal").textContent = S.quality;
     });
 
-    $("themeBtn").addEventListener("click", function(){
-      var root = document.documentElement;
-      var cur = root.getAttribute("data-theme");
-      if(!cur){
-        var darkNow = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        root.setAttribute("data-theme", darkNow ? "light" : "dark");
-      } else {
-        root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
-      }
+    $("themeSel").value = currentTheme();
+    $("themeSel").addEventListener("change", function(e){
+      applyTheme(e.target.value);
+      try { localStorage.setItem(THEME_KEY, e.target.value); } catch(err){ /* storage blocked: theme lasts this session only */ }
     });
 
     $("saveBtn").addEventListener("click", saveImage);
@@ -1191,8 +1243,26 @@ button.tiny{padding:5px 8px; font-size:10px}
     }, mime, S.fmt === "png" ? undefined : q);
   }
 
+  /* ---------------- theme ---------------- */
+  var THEME_KEY = "chereesizer-theme";
+  var THEMES = ["auto", "dark", "light", "cheree", "ocean", "forest", "contrast"];
+
+  function currentTheme(){
+    var t = "auto";
+    try { t = localStorage.getItem(THEME_KEY) || "auto"; } catch(err){ /* storage blocked: fall back to Auto */ }
+    return THEMES.indexOf(t) >= 0 ? t : "auto";
+  }
+
+  // "auto" removes the attribute so the stylesheet follows the system light/dark setting.
+  function applyTheme(t){
+    var root = document.documentElement;
+    if(t === "auto") root.removeAttribute("data-theme");
+    else root.setAttribute("data-theme", t);
+  }
+
   /* ---------------- boot ---------------- */
   function boot(){
+    applyTheme(currentTheme());
     buildBands();
     wire();
     var c = makeSample();
